@@ -43,8 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="bank-app\BankAppMain.cs" />
+    <Compile Include="common\ProcessManager.cs" />
+    <Compile Include="draft-app\DraftAppMain.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sport-app\SportAppMain.cs" />
+    <Compile Include="transportation-app\TransportationAppMain.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

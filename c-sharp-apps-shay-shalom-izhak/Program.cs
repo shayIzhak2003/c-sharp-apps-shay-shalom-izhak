@@ -1,4 +1,6 @@
-﻿using System;
+﻿using c_sharp_apps_shay_shalom_izhak.bank_app;
+using c_sharp_apps_shay_shalom_izhak.common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +12,7 @@ namespace c_sharp_apps_shay_shalom_izhak
     {
         static void Main(string[] args)
         {
-
+            ProcessManager.MainProcess();
         }
     }
 }
