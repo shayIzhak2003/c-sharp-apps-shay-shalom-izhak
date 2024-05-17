@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34622.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "c-sharp-apps-shay-shalom-izhak", "c-sharp-apps-shay-shalom-izhak\c-sharp-apps-shay-shalom-izhak.csproj", "{A8AB6A3A-E7ED-4E1F-BAC5-98D4EFF7D738}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A8AB6A3A-E7ED-4E1F-BAC5-98D4EFF7D738}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8AB6A3A-E7ED-4E1F-BAC5-98D4EFF7D738}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8AB6A3A-E7ED-4E1F-BAC5-98D4EFF7D738}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8AB6A3A-E7ED-4E1F-BAC5-98D4EFF7D738}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2E17F9A2-6C92-4BCE-A233-F614F83E9AAE}
+	EndGlobalSection
+EndGlobal
