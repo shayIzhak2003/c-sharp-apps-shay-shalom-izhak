@@ -11,6 +11,7 @@ namespace c_sharp_apps_shay_shalom_izhak.transportation_app
         public static void MainEntry()
         {
             Console.WriteLine("this is “TransportationApp”");
+            Console.WriteLine();
         }
     }
 }

@@ -11,6 +11,7 @@ namespace c_sharp_apps_shay_shalom_izhak.bank_app
         public static void MainEntry()
         {
             Console.WriteLine("this is “BankApp”");
+            Console.WriteLine();
         }
     }
 }

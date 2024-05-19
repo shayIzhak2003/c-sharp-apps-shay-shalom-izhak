@@ -18,6 +18,7 @@ namespace c_sharp_apps_shay_shalom_izhak.common
             {
                 Console.WriteLine("choose your app \n 1.BankApp  \n 2.SportApp  \n 3.DraftApp \n 4.TransportationApp \n 0.Exit");
                 int choose = int.Parse(Console.ReadLine());
+                Console.WriteLine();
                 switch (choose)
                 {
                     case 1:
