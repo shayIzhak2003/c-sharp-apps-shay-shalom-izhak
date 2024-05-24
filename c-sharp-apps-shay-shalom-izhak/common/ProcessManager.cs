@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace c_sharp_apps_shay_shalom_izhak.common
 {
-    internal class ProcessManager
+    public class ProcessManager
     {
         public static void MainProcess()
         {

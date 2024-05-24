@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace c_sharp_apps_shay_shalom_izhak
 {
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
+     public class Program
+     {
+       public static void Main(string[] args)
+       {
             ProcessManager.MainProcess();
-        }
-    }
+       }
+     }
 }
