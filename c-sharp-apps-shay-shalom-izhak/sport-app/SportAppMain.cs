@@ -26,7 +26,8 @@ namespace c_sharp_apps_shay_shalom_izhak.sport_app
             Team team3 = new Team("Team C", "City C", "League A");
             Team team4 = new Team("Team D", "City D", "League A");
 
-            
+
+
             Season season2024 = new Season(2024, "Soccer", "National", 10, 4);
 
             
