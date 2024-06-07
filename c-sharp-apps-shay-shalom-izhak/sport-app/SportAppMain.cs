@@ -11,7 +11,7 @@ namespace c_sharp_apps_shay_shalom_izhak.sport_app
     {
         public static void MainEntry()
         {
-            // Set the Foreground color to blue 
+            // Set the Foreground color to green 
             Console.ForegroundColor
                 = ConsoleColor.Green;
 
