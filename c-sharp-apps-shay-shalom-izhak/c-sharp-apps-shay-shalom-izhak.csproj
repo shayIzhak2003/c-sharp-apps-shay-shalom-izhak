@@ -48,7 +48,11 @@
     <Compile Include="draft-app\DraftAppMain.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sport-app\Game.cs" />
+    <Compile Include="sport-app\Round.cs" />
+    <Compile Include="sport-app\Season.cs" />
     <Compile Include="sport-app\SportAppMain.cs" />
+    <Compile Include="sport-app\Team.cs" />
     <Compile Include="transportation-app\TransportationAppMain.cs" />
   </ItemGroup>
   <ItemGroup>
