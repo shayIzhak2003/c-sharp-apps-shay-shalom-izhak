@@ -53,6 +53,7 @@
     <Compile Include="sport-app\Season.cs" />
     <Compile Include="sport-app\SportAppMain.cs" />
     <Compile Include="sport-app\Team.cs" />
+    <Compile Include="sport-app\TestSportApp.cs" />
     <Compile Include="transportation-app\TransportationAppMain.cs" />
   </ItemGroup>
   <ItemGroup>

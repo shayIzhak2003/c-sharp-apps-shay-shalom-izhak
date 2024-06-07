@@ -1,4 +1,5 @@
-﻿using SoccerLeagueApp;
+﻿using c_sharp_apps_Akiva_Cohen.sport_app;
+using SoccerLeagueApp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,6 +63,9 @@ namespace c_sharp_apps_shay_shalom_izhak.sport_app
             
             Team winner = DetermineWinner(season2024.GetTeams());
             Console.WriteLine($"\nThe winner is: {winner.GetName()}");
+
+            Console.WriteLine();
+            TestSportApp.Test1();
 
             Console.WriteLine("\n type anything to exit!");
             Console.ReadLine();
