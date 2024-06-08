@@ -14,6 +14,7 @@ namespace c_sharp_apps_Akiva_Cohen.sport_app
             for (int i = 0; i < groups.Length; i++)
             {
                 groups[i].DisplayTable();
+                DisplayWinner(groups[i]);
             }
         }
 
@@ -115,7 +116,7 @@ namespace c_sharp_apps_Akiva_Cohen.sport_app
             groupG.SetTeams(teams7);
             manchesterCity.UpdateStatistics(20, 40, 8, 4, 14);
             rbLeipzig.UpdateStatistics(15, 28, 14, 4, 14);
-            youngBoys.UpdateStatistics(9, 20, 19 ,13,3);
+            youngBoys.UpdateStatistics(9, 20, 19, 4, 14);
             crvena.UpdateStatistics(6, 15, 28, 4, 14);
             groups[6] = groupG;
 
@@ -129,11 +130,27 @@ namespace c_sharp_apps_Akiva_Cohen.sport_app
             groupH.SetTeams(teams8);
             barcelona.UpdateStatistics(18, 38, 10, 4, 14);
             porto.UpdateStatistics(14, 29, 13, 4, 14);
-            shakhtarDonetsk.UpdateStatistics(12, 25, 18 , 4, 14);
+            shakhtarDonetsk.UpdateStatistics(12, 25, 18, 4, 14);
             antwerpFc.UpdateStatistics(8, 18, 22, 4, 14);
             groups[7] = groupH;
 
             return groups;
+        }
+
+        public static void DisplayWinner(Season season)
+        {
+            Team[] teams = season.GetTeams();
+            Team winner = teams[0];
+
+            foreach (Team team in teams)
+            {
+                if (team.GetPoints() > winner.GetPoints())
+                {
+                    winner = team;
+                }
+            }
+
+            Console.WriteLine($"Winner : {winner.GetName()} with {winner.GetPoints()} points");
         }
     }
 }
