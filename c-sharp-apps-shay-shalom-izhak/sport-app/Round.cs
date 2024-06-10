@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace c_sharp_apps_shay_shalom_izhak.sport_app
 {
@@ -17,29 +13,20 @@ namespace c_sharp_apps_shay_shalom_izhak.sport_app
             games = new Game[numberOfGames];
         }
 
-        public int GetRoundNumber()
-        {
-            return roundNumber;
-        }
+        public int GetRoundNumber() => roundNumber;
+        public void SetRoundNumber(int roundNumber) => this.roundNumber = roundNumber;
 
-        public void SetRoundNumber(int roundNumber)
-        {
-            this.roundNumber = roundNumber;
-        }
-
-        public Game[] GetGames()
-        {
-            return games;
-        }
+        public Game[] GetGames() => games;
 
         public void AddGame(Game game, int index)
         {
+            if (index < 0 || index >= games.Length)
+            {
+                throw new IndexOutOfRangeException("Invalid game index.");
+            }
             games[index] = game;
         }
 
-        public override string ToString()
-        {
-            return $"Round {roundNumber}";
-        }
+        public override string ToString() => $"Round {roundNumber}";
     }
 }

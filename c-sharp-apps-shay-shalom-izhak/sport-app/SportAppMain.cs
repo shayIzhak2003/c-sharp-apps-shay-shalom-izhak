@@ -1,87 +1,127 @@
-﻿using c_sharp_apps_Akiva_Cohen.sport_app;
+﻿
 using c_sharp_apps_shay_shalom_izhak.common;
 using SoccerLeagueApp;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace c_sharp_apps_shay_shalom_izhak.sport_app
 {
     public class SportAppMain
     {
+        private static Season[] groups;
+
         public static void MainEntry()
         {
             BgColorForApp bgColorForApp = new BgColorForApp();
             bgColorForApp.ChangeBgColor();
-            Console.WriteLine("\n welcom To SportApp!");
+            Console.WriteLine("\nWelcome To SportApp!");
             Console.WriteLine();
 
-            Team team1 = new Team("Team A", "City A", "League A");
-            Team team2 = new Team("Team B", "City B", "League A");
-            Team team3 = new Team("Team C", "City C", "League A");
-            Team team4 = new Team("Team D", "City D", "League A");
+            groups = TestSportApp.CreateChampionsLeagueMock();
 
-
-
-            Season season2024 = new Season(2024, "Soccer", "National", 10, 4);
-
-            
-            Team[] teams = { team1, team2, team3, team4 };
-            season2024.SetTeams(teams);
-
-            
-            Round nextRound = new Round(1, 10);
-            season2024.SetNextRound(nextRound);
-
-            
-            team1.UpdateStatistics(5, 2, 30, 15, 10);
-            team2.UpdateStatistics(4, 3, 3, 12, 12);
-            team3.UpdateStatistics(6, 1, 3, 20, 8);
-            team4.UpdateStatistics(3, 4, 3, 10, 15);
-
-            
-            Console.WriteLine($"Season Year: {season2024.GetYear()}");
-            Console.WriteLine($"Sport Type: {season2024.GetSportType()}");
-            Console.WriteLine($"League Type: {season2024.GetLeagueType()}");
-            Console.WriteLine($"Total Rounds: {season2024.GetTotalRounds()}");
-            Console.WriteLine($"Number of Teams: {season2024.GetNumberOfTeams()}");
-            Console.WriteLine($"Is Active: {season2024.GetIsActive()}");
-            Console.WriteLine($"Champion: {season2024.GetChampion()}");
-
-            
-            season2024.DisplayTable();
-
-            
-            Console.WriteLine($"\nNext Round: {season2024.GetNextRound()}");
-
-            
-            Team winner = DetermineWinner(season2024.GetTeams());
-            Console.WriteLine($"\nThe winner is: {winner.GetName()}");
-
-            Console.WriteLine();
-            TestSportApp.Test1();
-
-            Console.WriteLine("\n type anything to exit!");
-            Console.ReadLine();
-        }
-
-        static Team DetermineWinner(Team[] teams)
-        {
-            Team winner = null;
-            int maxPoints = int.MinValue;
-
-            foreach (Team team in teams)
+            bool exit = false;
+            while (!exit)
             {
-                if (team.GetPoints() > maxPoints)
+                Console.Clear();
+                Console.WriteLine("Main Menu:");
+                Console.WriteLine("1. Play a Game");
+                Console.WriteLine("2. Show League Table");
+                Console.WriteLine("0. Exit");
+                Console.Write("Choose an option: ");
+
+                string choice = Console.ReadLine();
+                Console.Clear();
+
+                switch (choice)
                 {
-                    maxPoints = team.GetPoints();
-                    winner = team;
+                    case "1":
+                        PlayGame();
+                        break;
+                    case "2":
+                        ShowLeagueTable();
+                        break;
+                    case "0":
+                        exit = true;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid choice. Press any key to try again.");
+                        Console.ReadKey();
+                        break;
                 }
             }
+        }
 
-            return winner;
+        private static void PlayGame()
+        {
+            Console.WriteLine("Choose a league to play a game:");
+            for (int i = 0; i < groups.Length; i++)
+            {
+                Console.WriteLine($"{i + 1}. {groups[i]}");
+            }
+            Console.Write("Enter league number: ");
+            int leagueIndex = int.Parse(Console.ReadLine()) - 1;
+
+            if (leagueIndex >= 0 && leagueIndex < groups.Length)
+            {
+                Season selectedSeason = groups[leagueIndex];
+                Team[] teams = selectedSeason.GetTeams();
+
+                Console.WriteLine("Choose two teams to play a game:");
+                for (int i = 0; i < teams.Length; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {teams[i].GetName()}");
+                }
+                Console.Write("Enter first team number: ");
+                int team1Index = int.Parse(Console.ReadLine()) - 1;
+                Console.Write("Enter second team number: ");
+                int team2Index = int.Parse(Console.ReadLine()) - 1;
+
+                if (team1Index >= 0 && team1Index < teams.Length && team2Index >= 0 && team2Index < teams.Length && team1Index != team2Index)
+                {
+                    Team team1 = teams[team1Index];
+                    Team team2 = teams[team2Index];
+                    Random rand = new Random();
+                    int goalsTeam1 = rand.Next(0, 5);
+                    int goalsTeam2 = rand.Next(0, 5);
+
+                    Game game = new Game(team1, team2);
+                    game.SetGoalsTeamA(goalsTeam1);
+                    game.SetGoalsTeamB(goalsTeam2);
+                    game.FinishGame();
+                }
+                else
+                {
+                    Console.WriteLine("Invalid team selection. Press any key to return to the menu.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid league selection. Press any key to return to the menu.");
+            }
+
+            Console.ReadKey();
+        }
+
+        private static void ShowLeagueTable()
+        {
+            Console.WriteLine("Choose a league to show the table:");
+            for (int i = 0; i < groups.Length; i++)
+            {
+                Console.WriteLine($"{i + 1}. {groups[i]}");
+            }
+            Console.Write("Enter league number: ");
+            int leagueIndex = int.Parse(Console.ReadLine()) - 1;
+
+            if (leagueIndex >= 0 && leagueIndex < groups.Length)
+            {
+                Season selectedSeason = groups[leagueIndex];
+                selectedSeason.DisplayTable();
+            }
+            else
+            {
+                Console.WriteLine("Invalid league selection. Press any key to return to the menu.");
+            }
+
+            Console.ReadKey();
         }
     }
 }

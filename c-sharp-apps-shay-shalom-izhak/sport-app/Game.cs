@@ -1,9 +1,5 @@
 ﻿using SoccerLeagueApp;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace c_sharp_apps_shay_shalom_izhak.sport_app
 {
@@ -28,70 +24,25 @@ namespace c_sharp_apps_shay_shalom_izhak.sport_app
             this.gameEvents = string.Empty;
         }
 
-        public Team GetTeamA()
-        {
-            return teamA;
-        }
+        public Team GetTeamA() => teamA;
+        public void SetTeamA(Team teamA) => this.teamA = teamA;
 
-        public void SetTeamA(Team teamA)
-        {
-            this.teamA = teamA;
-        }
+        public Team GetTeamB() => teamB;
+        public void SetTeamB(Team teamB) => this.teamB = teamB;
 
-        public Team GetTeamB()
-        {
-            return teamB;
-        }
+        public int GetGoalsTeamA() => goalsTeamA;
+        public void SetGoalsTeamA(int goalsTeamA) => this.goalsTeamA = goalsTeamA;
 
-        public void SetTeamB(Team teamB)
-        {
-            this.teamB = teamB;
-        }
+        public int GetGoalsTeamB() => goalsTeamB;
+        public void SetGoalsTeamB(int goalsTeamB) => this.goalsTeamB = goalsTeamB;
 
-        public int GetGoalsTeamA()
-        {
-            return goalsTeamA;
-        }
+        public int GetCurrentMinute() => currentMinute;
+        public void SetCurrentMinute(int currentMinute) => this.currentMinute = currentMinute;
 
-        public void SetGoalsTeamA(int goalsTeamA)
-        {
-            this.goalsTeamA = goalsTeamA;
-        }
+        public bool GetIsActive() => isActive;
+        public void SetIsActive(bool isActive) => this.isActive = isActive;
 
-        public int GetGoalsTeamB()
-        {
-            return goalsTeamB;
-        }
-
-        public void SetGoalsTeamB(int goalsTeamB)
-        {
-            this.goalsTeamB = goalsTeamB;
-        }
-
-        public int GetCurrentMinute()
-        {
-            return currentMinute;
-        }
-
-        public void SetCurrentMinute(int currentMinute)
-        {
-            this.currentMinute = currentMinute;
-        }
-
-        public bool GetIsActive()
-        {
-            return isActive;
-        }
-
-        public void SetIsActive(bool isActive)
-        {
-            this.isActive = isActive;
-        }
-
-        public string GetGameEvents()
-        {
-            return gameEvents;
-        }
+        public string GetGameEvents() => gameEvents;
 
         public void AddGameEvent(string eventDescription)
         {
@@ -157,9 +108,6 @@ namespace c_sharp_apps_shay_shalom_izhak.sport_app
             Console.WriteLine("Game Events:\n" + gameEvents);
         }
 
-        public override string ToString()
-        {
-            return $"Game between {teamA.GetName()} and {teamB.GetName()}";
-        }
+        public override string ToString() => $"Game between {teamA.GetName()} and {teamB.GetName()}";
     }
 }
