@@ -6,26 +6,61 @@ using System.Threading.Tasks;
 
 namespace c_sharp_apps_shay_shalom_izhak.common
 {
-    public class BgColorForApp
+      public class BgColorForApp
     {
         public void ChangeBgColor()
         {
-            {
-                Console.WriteLine("Enter a color (Red, Green, Blue, etc.): ");
-                string color = Console.ReadLine();
+            // Allow the user to choose a background color
+            Console.WriteLine("Choose a background color:");
+            DisplayColorOptions();
+            ConsoleColor bgColor = GetColorFromUser();
 
-                try
+            // Set the chosen background color
+            Console.BackgroundColor = bgColor;
+            Console.Clear();
+            Console.WriteLine("Background color changed!");
+        }
+
+        public void ChangeFontColor()
+        {
+            // Allow the user to choose a font color
+            Console.WriteLine("Choose a font color:");
+            DisplayColorOptions();
+            ConsoleColor fontColor = GetColorFromUser();
+
+            // Set the chosen font color
+            Console.ForegroundColor = fontColor;
+            Console.Clear();
+            Console.WriteLine("Font color changed!");
+        }
+
+        private void DisplayColorOptions()
+        {
+            foreach (ConsoleColor color in Enum.GetValues(typeof(ConsoleColor)))
+            {
+                Console.WriteLine($"{(int)color}. {color}");
+            }
+        }
+
+        private ConsoleColor GetColorFromUser()
+        {
+            ConsoleColor selectedColor;
+            while (true)
+            {
+                Console.Write("Enter the color number: ");
+                string input = Console.ReadLine();
+
+                if (int.TryParse(input, out int colorNumber) && Enum.IsDefined(typeof(ConsoleColor), colorNumber))
                 {
-                    ConsoleColor consoleColor = (ConsoleColor)Enum.Parse(typeof(ConsoleColor), color, true);
-                    Console.BackgroundColor = consoleColor;
-                    Console.Clear(); // To refresh the console with the new color
-                    Console.WriteLine($"Background color changed to {color}");
+                    selectedColor = (ConsoleColor)colorNumber;
+                    break;
                 }
-                catch (Exception)
+                else
                 {
-                    Console.WriteLine("Invalid color entered. Please enter a valid color.");
+                    Console.WriteLine("Invalid color number. Please try again.");
                 }
             }
+            return selectedColor;
         }
     }
 }
