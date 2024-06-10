@@ -6,8 +6,40 @@ using System.Threading.Tasks;
 
 namespace c_sharp_apps_shay_shalom_izhak.common
 {
-      public class BgColorForApp
+    public class BgColorForApp
     {
+        public void ChangeBgAndFontColor()
+        {
+            // Allow the user to choose a background color
+            Console.WriteLine("Choose a background color:");
+            DisplayColorOptions();
+            ConsoleColor bgColor = GetColorFromUser();
+            Console.Clear();
+
+            // Loop until a different font color is chosen
+            ConsoleColor fontColor;
+            do
+            {
+                // Allow the user to choose a font color
+                Console.WriteLine("Choose a font color:");
+                DisplayColorOptions();
+                fontColor = GetColorFromUser();
+
+                if (bgColor == fontColor)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Font color cannot be the same as background color. Please choose a different font color.");
+                }
+            }
+            while (bgColor == fontColor);
+
+            // Set the chosen background and font colors
+            Console.BackgroundColor = bgColor;
+            Console.ForegroundColor = fontColor;
+            Console.Clear();
+            Console.WriteLine("Background and font color changed!");
+        }
+
         public void ChangeBgColor()
         {
             // Allow the user to choose a background color

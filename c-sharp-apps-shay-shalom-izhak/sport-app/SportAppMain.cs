@@ -12,7 +12,7 @@ namespace c_sharp_apps_shay_shalom_izhak.sport_app
         public static void MainEntry()
         {
             BgColorForApp bgColorForApp = new BgColorForApp();
-            bgColorForApp.ChangeBgColor();
+            bgColorForApp.ChangeBgAndFontColor();
             Console.WriteLine("\nWelcome To SportApp!");
             Console.WriteLine();
 
@@ -22,6 +22,7 @@ namespace c_sharp_apps_shay_shalom_izhak.sport_app
             while (!exit)
             {
                 Console.Clear();
+
                 Console.WriteLine("Main Menu:");
                 Console.WriteLine("1. Play a Game");
                 Console.WriteLine("2. Show League Table");
@@ -29,7 +30,6 @@ namespace c_sharp_apps_shay_shalom_izhak.sport_app
                 Console.Write("Choose an option: ");
 
                 string choice = Console.ReadLine();
-                Console.Clear();
 
                 switch (choice)
                 {
@@ -52,6 +52,7 @@ namespace c_sharp_apps_shay_shalom_izhak.sport_app
 
         private static void PlayGame()
         {
+            Console.Clear();
             Console.WriteLine("Choose a league to play a game:");
             for (int i = 0; i < groups.Length; i++)
             {
@@ -65,6 +66,7 @@ namespace c_sharp_apps_shay_shalom_izhak.sport_app
                 Season selectedSeason = groups[leagueIndex];
                 Team[] teams = selectedSeason.GetTeams();
 
+                Console.Clear();
                 Console.WriteLine("Choose two teams to play a game:");
                 for (int i = 0; i < teams.Length; i++)
                 {
@@ -87,6 +89,9 @@ namespace c_sharp_apps_shay_shalom_izhak.sport_app
                     game.SetGoalsTeamA(goalsTeam1);
                     game.SetGoalsTeamB(goalsTeam2);
                     game.FinishGame();
+
+                    Console.WriteLine($"\n{team1.GetName()} {goalsTeam1} - {goalsTeam2} {team2.GetName()}");
+                    Console.WriteLine("Game finished. Press any key to return to the menu.");
                 }
                 else
                 {
@@ -97,12 +102,12 @@ namespace c_sharp_apps_shay_shalom_izhak.sport_app
             {
                 Console.WriteLine("Invalid league selection. Press any key to return to the menu.");
             }
-
             Console.ReadKey();
         }
 
         private static void ShowLeagueTable()
         {
+            Console.Clear();
             Console.WriteLine("Choose a league to show the table:");
             for (int i = 0; i < groups.Length; i++)
             {
@@ -113,14 +118,15 @@ namespace c_sharp_apps_shay_shalom_izhak.sport_app
 
             if (leagueIndex >= 0 && leagueIndex < groups.Length)
             {
+                Console.Clear();
                 Season selectedSeason = groups[leagueIndex];
                 selectedSeason.DisplayTable();
+                Console.WriteLine("\nPress any key to return to the menu.");
             }
             else
             {
                 Console.WriteLine("Invalid league selection. Press any key to return to the menu.");
             }
-
             Console.ReadKey();
         }
     }
