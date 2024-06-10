@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="bank-app\BankAppMain.cs" />
+    <Compile Include="common\BgColorForApp.cs" />
     <Compile Include="common\ProcessManager.cs" />
     <Compile Include="draft-app\DraftAppMain.cs" />
     <Compile Include="Program.cs" />

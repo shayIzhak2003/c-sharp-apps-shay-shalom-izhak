@@ -14,6 +14,7 @@ namespace c_sharp_apps_Akiva_Cohen.sport_app
             for (int i = 0; i < groups.Length; i++)
             {
                 groups[i].DisplayTable();
+                Console.WriteLine();
                 DisplayWinner(groups[i]);
             }
         }

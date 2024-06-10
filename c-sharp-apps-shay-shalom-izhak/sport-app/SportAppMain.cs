@@ -1,4 +1,5 @@
 ﻿using c_sharp_apps_Akiva_Cohen.sport_app;
+using c_sharp_apps_shay_shalom_izhak.common;
 using SoccerLeagueApp;
 using System;
 using System.Collections.Generic;
@@ -12,13 +13,8 @@ namespace c_sharp_apps_shay_shalom_izhak.sport_app
     {
         public static void MainEntry()
         {
-            // Set the Foreground color to green 
-            Console.ForegroundColor
-                = ConsoleColor.Green;
-
-            // Display current Foreground color 
-            Console.WriteLine("Changed Foreground Color: {0}",
-                                    Console.ForegroundColor);
+            BgColorForApp bgColorForApp = new BgColorForApp();
+            bgColorForApp.ChangeBgColor();
             Console.WriteLine("\n welcom To SportApp!");
             Console.WriteLine();
 
