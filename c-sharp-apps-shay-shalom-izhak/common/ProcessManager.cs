@@ -21,6 +21,7 @@ namespace c_sharp_apps_shay_shalom_izhak.common
                 Console.Write("enter your dection :");
                 int choose = int.Parse(Console.ReadLine());
                 Console.WriteLine();
+                Console.Clear();
                 switch (choose)
                 {
                     case 1:
