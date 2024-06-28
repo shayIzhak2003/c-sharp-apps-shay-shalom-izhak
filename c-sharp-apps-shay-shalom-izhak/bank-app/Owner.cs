@@ -31,7 +31,7 @@ namespace c_sharp_apps_shay_shalom_izhak.bank_app
         public Owner(string firstName, string lastName)
         {
             this.FirstName = firstName;
-            this.LastName = lastName;
+            this.LastName = lastName; 
         }
     }
 }
