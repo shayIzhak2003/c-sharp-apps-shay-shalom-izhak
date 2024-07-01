@@ -26,6 +26,7 @@ namespace c_sharp_apps_shay_shalom_izhak.sport_app
                 Console.WriteLine("1. Play a Game");
                 Console.WriteLine("2. Show League Table");
                 Console.WriteLine("3. Change Colors");
+                Console.WriteLine("4. run GeneralPlayer class");
                 Console.WriteLine("0. Exit");
                 Console.Write("Choose an option: ");
 
@@ -41,6 +42,9 @@ namespace c_sharp_apps_shay_shalom_izhak.sport_app
                         break;
                     case "3":
                         bgColorForApp.ChangeBgAndFontColor();
+                        break;
+                    case "4":
+                        RunGeneralPlayer.RunMain();
                         break;
                     case "0":
                         exit = true;
