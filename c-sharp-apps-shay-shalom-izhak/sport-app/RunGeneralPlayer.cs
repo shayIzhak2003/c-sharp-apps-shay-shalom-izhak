@@ -15,6 +15,8 @@ namespace c_sharp_apps_shay_shalom_izhak.sport_app
             SoccerPlayer soccerPlayer = new SoccerPlayer();
 
             // Simulate some actions
+            Console.Clear();
+            Console.WriteLine("Running GeneralPlayer example...");
             basketballPlayer.ScoreField(); // Adds 2 points
             basketballPlayer.Score3();     // Adds 3 points
             basketballPlayer.AddFoul();    // Adds 1 foul
@@ -22,6 +24,9 @@ namespace c_sharp_apps_shay_shalom_izhak.sport_app
             soccerPlayer.ScoreField();     // Adds 1 point
             soccerPlayer.AddFoul();        // Adds 1 foul
             soccerPlayer.SetRedCard(true); // Player gets a red card
+
+            Console.WriteLine("GeneralPlayer example completed. Press any key to return to the main menu.");
+            Console.ReadKey();
         }
     }
 }
