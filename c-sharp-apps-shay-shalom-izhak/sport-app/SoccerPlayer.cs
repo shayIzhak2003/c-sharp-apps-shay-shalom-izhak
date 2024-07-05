@@ -9,13 +9,17 @@ namespace c_sharp_apps_shay_shalom_izhak.sport_app
     public class SoccerPlayer : GeneralPlayer
     {
         // Additional Properties
-        public bool RedCard { get;  set; }
-        public int Penalties { get;  set; }
+        public bool RedCard { get; set; }
+        public int Penalties { get; set; }
         public int DribblingRate { get; set; } // 1 to 10 scale
 
         // Constructor
-        public SoccerPlayer() : base("Goal")
+        public SoccerPlayer(string scoreName, int points, int assists, int fouls, bool outOfGame, string goalType, bool redCard, int penalties, int dribblingRate)
+            : base(scoreName, points, assists, fouls, outOfGame, goalType)
         {
+            RedCard = redCard;
+            Penalties = penalties;
+            DribblingRate = dribblingRate;
         }
 
         // Methods

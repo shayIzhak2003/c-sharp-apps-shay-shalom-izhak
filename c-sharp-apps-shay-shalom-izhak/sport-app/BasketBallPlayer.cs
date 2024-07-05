@@ -14,8 +14,12 @@ namespace c_sharp_apps_shay_shalom_izhak.sport_app
         public int Rebounds { get; private set; }
 
         // Constructor
-        public BasketBallPlayer() : base("Basket")
+        public BasketBallPlayer(string scoreName, int points, int assists, int fouls, bool outOfGame, string goalType, int dunks, int threeShots, int rebounds)
+            : base(scoreName, points, assists, fouls, outOfGame, goalType)
         {
+            Dunks = dunks;
+            ThreeShots = threeShots;
+            Rebounds = rebounds;
         }
 
         // Methods
