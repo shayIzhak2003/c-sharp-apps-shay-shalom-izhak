@@ -24,17 +24,14 @@ namespace c_sharp_apps_shay_shalom_izhak.transportation_app
 
         public override int MaxSpeed
         {
-            get { return base.MaxSpeed; }
+            get { return maxSpeed; }
             set
             {
-                if (value > 110)
+                if (value < 110)
                 {
-                    base.MaxSpeed = 110;
+                    maxSpeed = value;
                 }
-                else
-                {
-                    base.MaxSpeed = value;
-                }
+                
             }
         }
 

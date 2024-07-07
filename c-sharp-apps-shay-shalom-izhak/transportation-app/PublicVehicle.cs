@@ -21,7 +21,7 @@ namespace c_sharp_apps_shay_shalom_izhak.transportation_app
         public virtual int MaxSpeed
         {
             get { return maxSpeed; }
-            set { maxSpeed = value > 40 ? 40 : value; }
+            set { maxSpeed = value > 40 ? maxSpeed : value; }
         }
         public int Seats { get { return seats; } set { seats = value; } }
         public int Passengers { get { return passengers; } set { passengers = value; } }
