@@ -8,19 +8,16 @@ namespace c_sharp_apps_shay_shalom_izhak.transportation_app
 {
     public class PassengersAirplain : PublicVehicle
     {
-       
         private int enginesNum;
         private int wingLength;
         private int rows;
         private int columns;
 
-       
         public int EnginesNum { get { return enginesNum; } set { enginesNum = value; } }
         public int WingLength { get { return wingLength; } set { wingLength = value; } }
         public int Rows { get { return rows; } set { rows = value; } }
         public int Columns { get { return columns; } set { columns = value; } }
 
-       
         public PassengersAirplain() { }
 
         public PassengersAirplain(int line, int id, int enginesNum, int wingLength, int rows, int columns)
@@ -32,18 +29,17 @@ namespace c_sharp_apps_shay_shalom_izhak.transportation_app
             this.columns = columns;
         }
 
-        
         public override void UploadPassengers(int additionalPassengers)
         {
-            if (CalculateHasRoom(additionalPassengers))
+            int availableSeats = Seats - Passengers;
+            if (additionalPassengers <= availableSeats)
             {
                 Passengers += additionalPassengers;
             }
             else
             {
-                int availableSpace = Seats - Passengers;
-                Passengers += availableSpace;
-                RejectedPassengers += additionalPassengers - availableSpace;
+                Passengers += availableSeats;
+                RejectedPassengers += additionalPassengers - availableSeats;
             }
         }
 
