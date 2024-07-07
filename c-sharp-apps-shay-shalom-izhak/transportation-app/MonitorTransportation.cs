@@ -12,140 +12,144 @@ namespace c_sharp_apps_shay_shalom_izhak.transportation_app
         {
             bool allPassed = true;
 
-            // Test cases
-            PublicVehicle p1 = new PublicVehicle(18, 8099065, 0, 80);
+            PublicVehicle p1 = new PublicVehicle(18, 8099065, 50, 80);
             Bus bus = new Bus(1, 2033355, 110, 50, 3);
             PassengersAirplain passengersAirplain1 = new PassengersAirplain(605, 987653, 4, 10, 60, 6);
-
             Crone crone1 = new Crone(20, 5);
             PassengersTrain passengersTrain1 = new PassengersTrain(65, 9998774, 250, crone1, 5);
 
-            // Test 1: Check initial max speed for p1
+            p1.MaxSpeed = 0;
+            // Test 1
             if (p1.MaxSpeed != 0)
             {
-                Console.WriteLine($"Test 1 Error - Max Speed should be 0 but actual is {p1.MaxSpeed}");
+                Console.WriteLine("Test 1 Error - Max Speed should be {0} but actual is {1}", 0, p1.MaxSpeed);
                 allPassed = false;
             }
             else
             {
-                Console.WriteLine("Test 1 Passed");
+                Console.WriteLine("Test 1 Passed ");
             }
 
-            // Test 2: Check initial max speed for bus
+            // Test 2
             if (bus.MaxSpeed != 110)
             {
-                Console.WriteLine($"Test 2 Error - Max Speed should be 110 but actual is {bus.MaxSpeed}");
+                Console.WriteLine("Test 2 Error - Max Speed should be {0} but actual is {1}", 110, bus.MaxSpeed);
                 allPassed = false;
             }
             else
             {
-                Console.WriteLine("Test 2 Passed");
+                Console.WriteLine("Test 2 Passed ");
             }
 
-            // Test 3: Attempt to set invalid max speed for bus
+            // Test 3
             bus.MaxSpeed = 110;
             if (bus.MaxSpeed != 110)
             {
-                Console.WriteLine($"Test 3 Error - Max Speed should still be 110 but actual is {bus.MaxSpeed}");
+                Console.WriteLine("Test 3 Error - Max Speed should be {0} but actual is {1}", 110, bus.MaxSpeed);
                 allPassed = false;
             }
             else
             {
-                Console.WriteLine("Test 3 Passed");
+                Console.WriteLine("Test 3 Passed ");
             }
-           
-            // Test 4: Upload passengers for passengersAirplain1
-            passengersAirplain1.UploadPassengers(400);
+
+            // Test 4
+            passengersAirplain1.Passengers = 300;
+            passengersAirplain1.UploadPassengers(100);
             if (passengersAirplain1.Passengers == 353 && passengersAirplain1.RejectedPassengers == 47)
             {
-                Console.WriteLine("Test 4 Passed");
+                Console.WriteLine("Test 4 Passed ");
             }
             else
             {
-                Console.WriteLine($"Test 4 Error - Current Passengers should be 353 but actual is {passengersAirplain1.Passengers} " +
-                    $"and rejected should be 47 but actual is {passengersAirplain1.RejectedPassengers}");
+                Console.WriteLine("Test 4 Error - CurrentPassengers should be {0} but actual is {1} \n" +
+                    "And rejected should be {2} but actual is {3} ", 353, passengersAirplain1.Passengers,
+                    47, passengersAirplain1.RejectedPassengers);
                 allPassed = false;
             }
 
-            // Test 5: Upload passengers for bus
-            bus.UploadPassengers(55);
-            bus.UploadPassengers(5);
+            // Test 5
+            bus.UploadPassengers(40);
+            bus.UploadPassengers(20);
             if (bus.Passengers == 55 && bus.RejectedPassengers == 5)
             {
-                Console.WriteLine("Test 5 Passed");
+                Console.WriteLine("Test 5 Passed ");
             }
             else
             {
-                Console.WriteLine($"Test 5 Error - Current Passengers should be 55 but actual is {bus.Passengers} " +
-                    $"and rejected should be 5 but actual is {bus.RejectedPassengers}");
+                Console.WriteLine("Test 5 Error - CurrentPassengers should be {0} but actual is {1} \n" +
+                    "And rejected should be {2} but actual is {3} ", 55, bus.Passengers,
+                    5, bus.RejectedPassengers);
                 allPassed = false;
             }
 
-            // Test 6: Check id for passengersTrain1
+            // Test 6
             if (passengersTrain1.Id == 9998774)
             {
-                Console.WriteLine("Test 6 Passed");
+                Console.WriteLine("Test 6 Passed ");
             }
             else
             {
-                Console.WriteLine($"Test 6 Error - Id should be 9998774 but actual is {passengersTrain1.Id}");
+                Console.WriteLine("Test 6 Error - id  should be {0} but actual is {1} ",
+                   9998774, passengersTrain1.Id);
                 allPassed = false;
             }
 
-            // Test 7: Upload passengers for passengersTrain1
+            // Test 7
             passengersTrain1.UploadPassengers(300);
             passengersTrain1.UploadPassengers(134);
             if (passengersTrain1.Passengers == 434 && passengersTrain1.RejectedPassengers == 0)
             {
-                Console.WriteLine("Test 7 Passed");
+                Console.WriteLine("Test 7 Passed ");
             }
             else
             {
-                Console.WriteLine($"Test 7 Error - Current Passengers should be 434 but actual is {passengersTrain1.Passengers} " +
-                    $"and rejected should be 0 but actual is {passengersTrain1.RejectedPassengers}");
+                Console.WriteLine("Test 7 Error - CurrentPassengers should be {0} but actual is {1} \n" +
+                    "And rejected should be {2} but actual is {3} ", 434, passengersTrain1.Passengers,
+                    0, passengersTrain1.RejectedPassengers);
                 allPassed = false;
             }
 
-            // Test 8: Attempt to exceed capacity for passengersTrain1
+            // Test 8
             passengersTrain1.UploadPassengers(405);
-            if (passengersTrain1.Passengers == 700 && passengersTrain1.RejectedPassengers == 139 && !passengersTrain1.CalculateHasRoom(1))
+            if (passengersTrain1.Passengers == 700 && passengersTrain1.RejectedPassengers == 139
+                && !passengersTrain1.HasRoom)
             {
-                Console.WriteLine("Test 8 Passed");
+                Console.WriteLine("Test 8 Passed ");
             }
             else
             {
-                Console.WriteLine($"Test 8 Error - Current Passengers should be 700 but actual is {passengersTrain1.Passengers}, " +
-                    $"rejected should be 139 but actual is {passengersTrain1.RejectedPassengers}, and HasRoom should be False but actual is {passengersTrain1.CalculateHasRoom(1)}");
+                Console.WriteLine("Test 8 Error - CurrentPassengers should be {0} but actual is {1} \n" +
+                    "And rejected should be {2} but actual is {3} and HasRoom should be False, but actual is {4}", 700, passengersTrain1.Passengers,
+                    139, passengersTrain1.RejectedPassengers, passengersTrain1.HasRoom);
                 allPassed = false;
             }
 
-            // Test 9: Check that each crone in passengersTrain1 is a different instance
-            if (!ReferenceEquals(passengersTrain1.Crones[0], passengersTrain1.Crones[1]))
+            // Test 9
+            if (passengersTrain1.Crones[0].Equals(passengersTrain1.Crones[1]))
+            {
+                Console.WriteLine("Test 9 Error - each crone of the train should be different instance. ");
+                allPassed = false;
+            }
+            else
             {
                 Console.WriteLine("Test 9 Passed");
-            }
-            else
-            {
-                Console.WriteLine("Test 9 Error - Each crone of the train should be a different instance.");
-                allPassed = false;
             }
 
             Console.WriteLine("\n*********************************\n");
 
-            // Final result
             if (allPassed)
             {
-                Console.WriteLine("All TESTS PASSED - WELL DONE!!\n" +
-                    "Yet it's not saying that everything works well. You should test yourself a little bit, also.");
+                Console.WriteLine("All TEST PASSED - WELL DONE!! \n" +
+                    "Yet it's not saying that everything work well. You should test yourself a little bit, also.");
             }
             else
             {
-                Console.WriteLine("YOU HAVE FAILURES IN THE TESTS :( - SEE ABOVE");
+                Console.WriteLine("YOU HAVE FAILURES AT THE TESTS :( - SEE ABOVE");
             }
 
             Console.WriteLine("\n*********************************\n");
         }
-
         public static void MyTest()
         {
             Console.WriteLine("Starting MyTest...");

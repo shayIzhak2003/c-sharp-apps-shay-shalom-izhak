@@ -8,27 +8,26 @@ namespace c_sharp_apps_shay_shalom_izhak.transportation_app
 {
     public class PublicVehicle
     {
-       
-        private int line;
-        private int id;
-        private int maxSpeed;
-        private int seats;
-        private int passengers;
-        private int rejectedPassengers;
+        private int line = 0;
+        private int id = 0;
+        protected int maxSpeed = 0;
+        private int passengers = 0;
+        private int seats = 0;
+        private bool hasRoom = true;
+        private int rejectedPassengers = 0;
 
-       
         public int Line { get { return line; } set { line = value; } }
         public int Id { get { return id; } set { id = value; } }
         public virtual int MaxSpeed
         {
             get { return maxSpeed; }
-            set { maxSpeed = value > 40 ? 40 : value; } 
+            set { maxSpeed = value > 40 ? 40 : value; }
         }
         public int Seats { get { return seats; } set { seats = value; } }
-        public int Passengers { get { return passengers; }  set { passengers = value; } }
-        public int RejectedPassengers { get { return rejectedPassengers; }  set { rejectedPassengers = value; } }
+        public int Passengers { get { return passengers; } set { passengers = value; } }
+        public int RejectedPassengers { get { return rejectedPassengers; } set { rejectedPassengers = value; } }
+        public bool HasRoom { get { return hasRoom; } set { hasRoom = value; } }
 
-        
         public PublicVehicle() { }
 
         public PublicVehicle(int line, int id, int maxSpeed, int seats)
@@ -41,7 +40,6 @@ namespace c_sharp_apps_shay_shalom_izhak.transportation_app
 
         public PublicVehicle(int line, int id) : this(line, id, 40, 0) { }
 
-        
         public virtual bool CalculateHasRoom(int additionalPassengers)
         {
             return (passengers + additionalPassengers) <= seats;
@@ -58,6 +56,7 @@ namespace c_sharp_apps_shay_shalom_izhak.transportation_app
                 int availableSpace = seats - passengers;
                 passengers += availableSpace;
                 rejectedPassengers += additionalPassengers - availableSpace;
+                hasRoom = false;
             }
         }
 

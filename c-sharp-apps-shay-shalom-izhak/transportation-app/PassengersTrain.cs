@@ -8,15 +8,12 @@ namespace c_sharp_apps_shay_shalom_izhak.transportation_app
 {
     public class PassengersTrain : PublicVehicle
     {
-        
         private Crone[] crones;
         private int cronesAmount;
 
-        
         public Crone[] Crones { get { return crones; } }
         public int CronesAmount { get { return cronesAmount; } }
 
-        
         public PassengersTrain()
         {
             crones = new Crone[0];
@@ -34,7 +31,6 @@ namespace c_sharp_apps_shay_shalom_izhak.transportation_app
             CalculateSeats();
         }
 
-        
         private void CalculateSeats()
         {
             Seats = 0;
@@ -55,6 +51,7 @@ namespace c_sharp_apps_shay_shalom_izhak.transportation_app
                 int availableSpace = Seats - Passengers;
                 Passengers += availableSpace;
                 RejectedPassengers += additionalPassengers - availableSpace;
+                HasRoom = false;
             }
         }
 

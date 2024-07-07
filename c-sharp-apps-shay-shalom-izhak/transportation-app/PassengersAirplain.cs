@@ -40,6 +40,7 @@ namespace c_sharp_apps_shay_shalom_izhak.transportation_app
             {
                 Passengers += availableSeats;
                 RejectedPassengers += additionalPassengers - availableSeats;
+                HasRoom = false;
             }
         }
 

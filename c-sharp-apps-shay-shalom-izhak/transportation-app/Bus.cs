@@ -27,9 +27,9 @@ namespace c_sharp_apps_shay_shalom_izhak.transportation_app
             get { return base.MaxSpeed; }
             set
             {
-                if (value > 120)
+                if (value > 110)
                 {
-                    base.MaxSpeed = 120;
+                    base.MaxSpeed = 110;
                 }
                 else
                 {
@@ -51,9 +51,9 @@ namespace c_sharp_apps_shay_shalom_izhak.transportation_app
             {
                 RejectedPassengers += additionalPassengers - availableSeats;
                 Passengers = Seats + bufferSeats; // Fill up to maximum capacity + buffer
+                HasRoom = false;
             }
         }
-
 
         public void RingBell()
         {

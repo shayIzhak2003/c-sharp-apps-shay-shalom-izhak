@@ -8,14 +8,11 @@ namespace c_sharp_apps_shay_shalom_izhak.transportation_app
 {
     public class Crone
     {
-        
         private readonly int rows, columns;
 
-       
         public int Rows { get { return rows; } }
         public int Columns { get { return columns; } }
 
-       
         public Crone(int rows, int columns)
         {
             this.rows = rows;
@@ -28,7 +25,6 @@ namespace c_sharp_apps_shay_shalom_izhak.transportation_app
             this.columns = crone.columns;
         }
 
-       
         public int GetSeats()
         {
             return rows * columns;
