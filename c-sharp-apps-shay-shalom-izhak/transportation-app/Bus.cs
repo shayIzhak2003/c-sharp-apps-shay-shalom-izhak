@@ -27,7 +27,7 @@ namespace c_sharp_apps_shay_shalom_izhak.transportation_app
             get { return maxSpeed; }
             set
             {
-                if (value < 110)
+                if (value < 120)
                 {
                     maxSpeed = value;
                 }

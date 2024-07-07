@@ -34,7 +34,7 @@ namespace c_sharp_apps_shay_shalom_izhak.transportation_app
         {
             this.line = line;
             this.id = id;
-            this.maxSpeed = maxSpeed;
+            this.MaxSpeed = maxSpeed;
             this.seats = seats;
         }
 
