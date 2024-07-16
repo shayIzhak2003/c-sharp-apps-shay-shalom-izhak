@@ -148,6 +148,8 @@ namespace c_sharp_apps_shay_shalom_izhak.transportation_app
                 Console.WriteLine("YOU HAVE FAILURES AT THE TESTS :( - SEE ABOVE");
             }
 
+           
+
             Console.WriteLine("\n*********************************\n");
         }
         public static void MyTest()

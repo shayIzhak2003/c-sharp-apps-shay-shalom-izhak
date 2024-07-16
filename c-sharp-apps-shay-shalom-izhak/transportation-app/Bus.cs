@@ -31,14 +31,14 @@ namespace c_sharp_apps_shay_shalom_izhak.transportation_app
                 {
                     maxSpeed = value;
                 }
-                
             }
         }
 
         public override void UploadPassengers(int additionalPassengers)
         {
-            int bufferSeats = (int)(Seats * 0.1); // 10% buffer seats
-            int availableSeats = Seats - Passengers + bufferSeats;
+            int bufferSeats = (int)Math.Round(Seats * 0.1); // 10% buffer seats with rounding
+            int maxCapacity = Seats + bufferSeats; // Maximum capacity including buffer
+            int availableSeats = maxCapacity - Passengers;
 
             if (additionalPassengers <= availableSeats)
             {
@@ -47,7 +47,7 @@ namespace c_sharp_apps_shay_shalom_izhak.transportation_app
             else
             {
                 RejectedPassengers += additionalPassengers - availableSeats;
-                Passengers = Seats + bufferSeats; // Fill up to maximum capacity + buffer
+                Passengers = maxCapacity; // Fill up to maximum capacity including buffer
                 HasRoom = false;
             }
         }
