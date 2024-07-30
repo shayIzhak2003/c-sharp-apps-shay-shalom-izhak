@@ -39,6 +39,9 @@ namespace c_sharp_apps_shay_shalom_izhak.common
                         TransportationAppMain.MainEntry();
                         break;
 
+                    case 5:
+
+
                     case 0:
                         Console.WriteLine("the loop was breaked!");
                         return;

@@ -62,6 +62,25 @@
     <Compile Include="sport-app\SportAppMain.cs" />
     <Compile Include="sport-app\Team.cs" />
     <Compile Include="sport-app\TestSportApp.cs" />
+    <Compile Include="transportaion-Cargo-App\CargoType.cs" />
+    <Compile Include="transportaion-Cargo-App\CargoVehicle.cs" />
+    <Compile Include="transportaion-Cargo-App\Chair.cs" />
+    <Compile Include="transportaion-Cargo-App\Driver.cs" />
+    <Compile Include="transportaion-Cargo-App\ElectricItem.cs" />
+    <Compile Include="transportaion-Cargo-App\Furniture.cs" />
+    <Compile Include="transportaion-Cargo-App\GenericItem.cs" />
+    <Compile Include="transportaion-Cargo-App\IContainable.cs" />
+    <Compile Include="transportaion-Cargo-App\IPortable.cs" />
+    <Compile Include="transportaion-Cargo-App\IShippingPriceCalculator.cs" />
+    <Compile Include="transportaion-Cargo-App\Plane.cs" />
+    <Compile Include="transportaion-Cargo-App\Port.cs" />
+    <Compile Include="transportaion-Cargo-App\RunTranportaionApp2.cs" />
+    <Compile Include="transportaion-Cargo-App\Ship.cs" />
+    <Compile Include="transportaion-Cargo-App\Sofa.cs" />
+    <Compile Include="transportaion-Cargo-App\StorageStructure.cs" />
+    <Compile Include="transportaion-Cargo-App\Table.cs" />
+    <Compile Include="transportaion-Cargo-App\Train.cs" />
+    <Compile Include="transportaion-Cargo-App\Warehouse.cs" />
     <Compile Include="transportation-app\Bus.cs" />
     <Compile Include="transportation-app\Crone.cs" />
     <Compile Include="transportation-app\MonitorTransportation.cs" />
@@ -77,5 +96,6 @@
     <Content Include="resources\photo1.jpg" />
     <Content Include="resources\photo2.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
