@@ -18,6 +18,8 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
         bool IsFragile();
         StorageStructure GetLocation();
         bool IsLoaded();
+        CargoType CargoType { get; }
+
     }
 
 }

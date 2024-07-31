@@ -16,6 +16,7 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
         public bool Fragile { get; set; }
         public StorageStructure CurrentLocation { get; set; }
         public bool Loaded { get; set; }
+        public CargoType CargoType { get; set; } // Implementing CargoType property
 
         public decimal GetArea()
         {

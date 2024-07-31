@@ -1,6 +1,7 @@
 ﻿using c_sharp_apps_shay_shalom_izhak.bank_app;
 using c_sharp_apps_shay_shalom_izhak.draft_app;
 using c_sharp_apps_shay_shalom_izhak.sport_app;
+using c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App;
 using c_sharp_apps_shay_shalom_izhak.transportation_app;
 using System;
 using System.Collections.Generic;
@@ -40,7 +41,8 @@ namespace c_sharp_apps_shay_shalom_izhak.common
                         break;
 
                     case 5:
-
+                        RunTranportaionApp2.TestFunction();
+                        break;
 
                     case 0:
                         Console.WriteLine("the loop was breaked!");

@@ -76,6 +76,7 @@
     <Compile Include="transportaion-Cargo-App\Port.cs" />
     <Compile Include="transportaion-Cargo-App\RunTranportaionApp2.cs" />
     <Compile Include="transportaion-Cargo-App\Ship.cs" />
+    <Compile Include="transportaion-Cargo-App\ShippingPriceCalculator.cs" />
     <Compile Include="transportaion-Cargo-App\Sofa.cs" />
     <Compile Include="transportaion-Cargo-App\StorageStructure.cs" />
     <Compile Include="transportaion-Cargo-App\Table.cs" />
