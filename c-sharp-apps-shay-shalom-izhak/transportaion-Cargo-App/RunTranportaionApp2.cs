@@ -67,6 +67,7 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
             // Load items
             bool loadResult1 = testShip.Load(testItem1);
             bool loadResult2 = testShip.Load(testItem2);
+           
 
             // Check if items are loaded
             Console.WriteLine($"Load result 1: {loadResult1}"); // Expected: True

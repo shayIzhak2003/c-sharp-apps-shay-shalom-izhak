@@ -8,8 +8,6 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
 {
     public abstract class CargoVehicle : IContainable
     {
-        private static Random random = new Random();
-
         public Driver Driver { get; set; }
         public decimal MaxWeight { get; set; }
         public decimal MaxVolume { get; set; }
@@ -27,12 +25,8 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
         {
             ItemsToLoad = new List<IPortable>();
             ExpectedTripCost = new Dictionary<int, decimal>();
-            CurrentTripID = GenerateRandomTripID();
-        }
-
-        private int GenerateRandomTripID()
-        {
-            return random.Next(1000, 10000);
+            Random random = new Random();
+            CurrentTripID = random.Next(1000, 10000);
         }
 
         public abstract bool Load(IPortable item);
@@ -46,6 +40,7 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
         public abstract decimal GetMaxWeight();
         public abstract decimal GetCurrentVolume();
         public abstract decimal GetCurrentWeight();
+
         public abstract string GetPricingList();
 
         public void ApproveTrip()

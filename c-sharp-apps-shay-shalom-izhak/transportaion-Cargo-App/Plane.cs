@@ -96,7 +96,19 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
 
         public override string GetPricingList()
         {
-            return "Pricing list for plane transportation";
+            StringBuilder pricingList = new StringBuilder();
+            pricingList.AppendLine("Pricing List for Plane Transportation:");
+            decimal totalPrice = 0;
+
+            foreach (var item in ItemsToLoad)
+            {
+                decimal price = PriceCalculator.CalculatePrice(item, DistanceToNextPort);
+                totalPrice += price;
+                pricingList.AppendLine($"Item: {item.GetType().Name}, Volume: {item.GetVolume()} m³, Weight: {item.GetWeight()} kg, Price: {price:C}");
+            }
+
+            pricingList.AppendLine($"Total Price: {totalPrice:C}");
+            return pricingList.ToString();
         }
     }
 
