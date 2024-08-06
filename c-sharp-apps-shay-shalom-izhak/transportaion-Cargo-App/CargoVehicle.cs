@@ -65,5 +65,28 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
         {
             return PriceCalculator.CalculatePrice(ItemsToLoad, DistanceToNextPort);
         }
+        //public bool LoadCargo()
+        //{
+        //    foreach (var item in ItemsToLoad)
+        //    {
+        //        if (!Load(item))
+        //        {
+        //            // אם לא הצלחנו להעמיס את הפריט, נחזיר false
+        //            return false;
+        //        }
+
+        //        // עדכון המחיר הצפוי אחרי העמסת פריט
+        //        ExpectedTripCost[CurrentTripID] += PriceCalculator.CalculatePrice(new List<IPortable> { item }, DistanceToNextPort);
+
+        //        // אם הגענו למצב של עומס יתר או שאין יותר מקום, נפסיק את ההעמסה
+        //        if (IsOverload() || !IsHaveRoom())
+        //        {
+        //            break;
+        //        }
+        //    }
+
+        //    // אם כל הפריטים הועמסו בהצלחה, נחזיר true
+        //    return true;
+        //}
     }
 }
