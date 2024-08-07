@@ -64,56 +64,64 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
                 CargoType = CargoType.Ship
             };
 
-            // Load items
+            // Initial loading at the first port
+            Console.WriteLine("At Port 1:");
             bool loadResult1 = testShip.Load(testItem1);
-            bool loadResult2 = testShip.Load(testItem2);
-           
-
-            // Check if items are loaded
             Console.WriteLine($"Load result 1: {loadResult1}"); // Expected: True
+            DisplayLoadedItems(testShip, "after loading the first item at Port 1");
+
+            bool loadResult2 = testShip.Load(testItem2);
             Console.WriteLine($"Load result 2: {loadResult2}"); // Expected: True
+            DisplayLoadedItems(testShip, "after loading the second item at Port 1");
 
-            // Calculate shipping price for ship
-            decimal shipPrice1 = testShip.PriceCalculator.CalculatePrice(testItem1, testShip.DistanceToNextPort);
-            decimal shipPrice2 = testShip.PriceCalculator.CalculatePrice(testItem2, testShip.DistanceToNextPort);
+            // Travel to Port 2
+            testShip.DistanceToNextPort = 1500;
+            Console.WriteLine("Traveling to Port 2...");
+            testShip.TravelToNextPort();
 
-            Console.WriteLine($"Shipping price for item 1 by ship: {shipPrice1}");
-            Console.WriteLine($"Shipping price for item 2 by ship: {shipPrice2}");
+            // Operations at Port 2
+            Console.WriteLine("At Port 2:");
+            testShip.UnLoad(testItem1); // Unload the first item
+            DisplayLoadedItems(testShip, "after unloading the first item at Port 2");
 
-            // Check Plane Cargo
-            testItem1.CargoType = CargoType.Plane;
-            testItem2.CargoType = CargoType.Plane;
-            decimal planePrice1 = testShip.PriceCalculator.CalculatePrice(testItem1, testShip.DistanceToNextPort);
-            decimal planePrice2 = testShip.PriceCalculator.CalculatePrice(testItem2, testShip.DistanceToNextPort);
-            Console.WriteLine($"Shipping price for item 1 by plane: {planePrice1}");
-            Console.WriteLine($"Shipping price for item 2 by plane: {planePrice2}");
+            // Load the first item back and another item
+            testShip.Load(testItem1);
+            DisplayLoadedItems(testShip, "after loading the first item back at Port 2");
 
-            // Check Train Cargo
-            testItem1.CargoType = CargoType.Train;
-            testItem2.CargoType = CargoType.Train;
-            decimal trainPrice1 = testShip.PriceCalculator.CalculatePrice(testItem1, testShip.DistanceToNextPort);
-            decimal trainPrice2 = testShip.PriceCalculator.CalculatePrice(testItem2, testShip.DistanceToNextPort);
-            Console.WriteLine($"Shipping price for item 1 by train: {trainPrice1}");
-            Console.WriteLine($"Shipping price for item 2 by train: {trainPrice2}");
+            ElectricItem testItem3 = new ElectricItem(30, 60, 15, 8, true, 220, "NewBrand", "NewModel")
+            {
+                CargoType = CargoType.Ship
+            };
+            testShip.Load(testItem3);
+            DisplayLoadedItems(testShip, "after loading a new item at Port 2");
 
-            // Check generic storage
-            //testItem1.CargoType = CargoType.Storage;
-            //testItem2.CargoType = CargoType.Storage;
-            //decimal storagePrice1 = testShip.PriceCalculator.CalculatePrice(testItem1, testShip.DistanceToNextPort);
-            //decimal storagePrice2 = testShip.PriceCalculator.CalculatePrice(testItem2, testShip.DistanceToNextPort);
-            //Console.WriteLine($"Shipping price for item 1 by storage: {storagePrice1}");
-            //Console.WriteLine($"Shipping price for item 2 by storage: {storagePrice2}");
+            // Travel to Port 3
+            testShip.DistanceToNextPort = 2500;
+            Console.WriteLine("Traveling to Port 3...");
+            testShip.TravelToNextPort();
 
-            // Unload items
-            bool unloadResult1 = testShip.UnLoad(testItem1);
-            bool unloadResult2 = testShip.UnLoad(testItem2);
+            // Operations at Port 3
+            Console.WriteLine("At Port 3:");
+            testShip.UnLoad(testItem2); // Unload the second item
+            DisplayLoadedItems(testShip, "after unloading the second item at Port 3");
 
-            // Check if items are unloaded
-            Console.WriteLine($"Unload result 1: {unloadResult1}"); // Expected: True
-            Console.WriteLine($"Unload result 2: {unloadResult2}"); // Expected: True
+            testShip.UnLoad(testItem3); // Unload the new item
+            DisplayLoadedItems(testShip, "after unloading the new item at Port 3");
+
+            // End of the journey, display final cargo status
+            Console.WriteLine("Final cargo status:");
+            DisplayLoadedItems(testShip, "at the end of the journey");
 
             Console.WriteLine("TestFunction executed successfully.");
         }
 
+        private static void DisplayLoadedItems(Ship ship, string message)
+        {
+            Console.WriteLine($"Items loaded in the ship {message}:");
+            foreach (var item in ship.ItemsToLoad)
+            {
+                Console.WriteLine($"- Item: {item.GetType().Name}, Volume: {item.GetVolume()} m³, Weight: {item.GetWeight()} kg");
+            }
+        }
     }
 }
