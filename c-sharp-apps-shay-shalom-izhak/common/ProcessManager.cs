@@ -42,6 +42,7 @@ namespace c_sharp_apps_shay_shalom_izhak.common
 
                     case 5:
                         RunTranportaionApp2.TestFunction();
+                        RunTranportaionApp2.DemoMain();
                         break;
 
                     case 0:

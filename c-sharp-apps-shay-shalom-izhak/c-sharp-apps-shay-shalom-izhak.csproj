@@ -65,6 +65,8 @@
     <Compile Include="transportaion-Cargo-App\CargoType.cs" />
     <Compile Include="transportaion-Cargo-App\CargoVehicle.cs" />
     <Compile Include="transportaion-Cargo-App\Chair.cs" />
+    <Compile Include="transportaion-Cargo-App\Container.cs" />
+    <Compile Include="transportaion-Cargo-App\Cron.cs" />
     <Compile Include="transportaion-Cargo-App\Driver.cs" />
     <Compile Include="transportaion-Cargo-App\ElectricItem.cs" />
     <Compile Include="transportaion-Cargo-App\Furniture.cs" />
