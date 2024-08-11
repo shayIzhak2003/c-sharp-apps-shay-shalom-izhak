@@ -13,62 +13,105 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
             // Create a Train instance with Cron as the limiter
             Train testTrain = new Train(maxVolume: 100000m, maxWeight: 200000m);
 
+            // Create a Ship instance with Container as the limiter
+            Ship testShip = new Ship(maxItems: 5, maxVolume: 150000m, maxWeight: 300000m);
+
             // Create test items
             ElectricItem testItem1 = new ElectricItem(10, 22, 4, 2, false, 110, "TestBrand1", "TestModel1");
             ElectricItem testItem2 = new ElectricItem(10, 22, 4, 2, false, 110, "TestBrand2", "TestModel2");
+            ElectricItem testItem3 = new ElectricItem(30, 60, 15, 8, true, 220, "NewBrand", "NewModel");
 
             // Initial loading at the first port
             Console.WriteLine("At Port 1:");
+
+            // Load items onto the train
             bool loadResult1 = testTrain.Load(testItem1);
-            Console.WriteLine($"Load result 1: {loadResult1}"); // Expected: True
-            DisplayLoadedItems(testTrain, "after loading the first item at Port 1");
+            Console.WriteLine($"Train Load result 1: {loadResult1}"); // Expected: True
+            DisplayLoadedItems(testTrain, "after loading the first item onto the Train at Port 1");
 
             bool loadResult2 = testTrain.Load(testItem2);
-            Console.WriteLine($"Load result 2: {loadResult2}"); // Expected: True
-            DisplayLoadedItems(testTrain, "after loading the second item at Port 1");
+            Console.WriteLine($"Train Load result 2: {loadResult2}"); // Expected: True
+            DisplayLoadedItems(testTrain, "after loading the second item onto the Train at Port 1");
+
+            // Load items onto the ship
+            bool shipLoadResult1 = testShip.Load(testItem1);
+            Console.WriteLine($"Ship Load result 1: {shipLoadResult1}"); // Expected: True
+            DisplayLoadedItems(testShip, "after loading the first item onto the Ship at Port 1");
+
+            bool shipLoadResult2 = testShip.Load(testItem2);
+            Console.WriteLine($"Ship Load result 2: {shipLoadResult2}"); // Expected: True
+            DisplayLoadedItems(testShip, "after loading the second item onto the Ship at Port 1");
 
             // Travel to Port 2
             testTrain.DistanceToNextPort = 1500;
-            Console.WriteLine("Traveling to Port 2...");
+            Console.WriteLine("Train traveling to Port 2...");
             testTrain.TravelToNextPort();
+
+            testShip.DistanceToNextPort = 2000;
+            Console.WriteLine("Ship traveling to Port 2...");
+            testShip.TravelToNextPort();
 
             // Operations at Port 2
             Console.WriteLine("At Port 2:");
-            testTrain.UnLoad(testItem1); // Unload the first item
-            DisplayLoadedItems(testTrain, "after unloading the first item at Port 2");
 
-            // Load the first item back and another item
-            testTrain.Load(testItem1);
-            DisplayLoadedItems(testTrain, "after loading the first item back at Port 2");
+            // Train operations at Port 2
+            testTrain.UnLoad(testItem1); // Unload the first item from the train
+            DisplayLoadedItems(testTrain, "after unloading the first item from the Train at Port 2");
 
-            ElectricItem testItem3 = new ElectricItem(30, 60, 15, 8, true, 220, "NewBrand", "NewModel");
-            testTrain.Load(testItem3);
-            DisplayLoadedItems(testTrain, "after loading a new item at Port 2");
+            testTrain.Load(testItem1); // Load the first item back onto the train
+            DisplayLoadedItems(testTrain, "after loading the first item back onto the Train at Port 2");
+
+            testTrain.Load(testItem3); // Load a new item onto the train
+            DisplayLoadedItems(testTrain, "after loading a new item onto the Train at Port 2");
+
+            // Ship operations at Port 2
+            testShip.UnLoad(testItem1); // Unload the first item from the ship
+            DisplayLoadedItems(testShip, "after unloading the first item from the Ship at Port 2");
+
+            testShip.Load(testItem1); // Load the first item back onto the ship
+            DisplayLoadedItems(testShip, "after loading the first item back onto the Ship at Port 2");
+
+            testShip.Load(testItem3); // Load a new item onto the ship
+            DisplayLoadedItems(testShip, "after loading a new item onto the Ship at Port 2");
 
             // Travel to Port 3
             testTrain.DistanceToNextPort = 2500;
-            Console.WriteLine("Traveling to Port 3...");
+            Console.WriteLine("Train traveling to Port 3...");
             testTrain.TravelToNextPort();
+
+            testShip.DistanceToNextPort = 3000;
+            Console.WriteLine("Ship traveling to Port 3...");
+            testShip.TravelToNextPort();
 
             // Operations at Port 3
             Console.WriteLine("At Port 3:");
-            testTrain.UnLoad(testItem2); // Unload the second item
-            DisplayLoadedItems(testTrain, "after unloading the second item at Port 3");
 
-            testTrain.UnLoad(testItem3); // Unload the new item
-            DisplayLoadedItems(testTrain, "after unloading the new item at Port 3");
+            // Train operations at Port 3
+            testTrain.UnLoad(testItem2); // Unload the second item from the train
+            DisplayLoadedItems(testTrain, "after unloading the second item from the Train at Port 3");
 
-            // End of the journey, display final cargo status
+            testTrain.UnLoad(testItem3); // Unload the new item from the train
+            DisplayLoadedItems(testTrain, "after unloading the new item from the Train at Port 3");
+
+            // Ship operations at Port 3
+            testShip.UnLoad(testItem2); // Unload the second item from the ship
+            DisplayLoadedItems(testShip, "after unloading the second item from the Ship at Port 3");
+
+            testShip.UnLoad(testItem3); // Unload the new item from the ship
+            DisplayLoadedItems(testShip, "after unloading the new item from the Ship at Port 3");
+
+            // End of the journey, display final cargo status for both train and ship
             Console.WriteLine("Final cargo status:");
-            DisplayLoadedItems(testTrain, "at the end of the journey");
+            DisplayLoadedItems(testTrain, "on the Train at the end of the journey");
+            DisplayLoadedItems(testShip, "on the Ship at the end of the journey");
 
             Console.WriteLine("TestFunction executed successfully.");
         }
 
-        private static void DisplayLoadedItems(Train train, string message)
+        private static void DisplayLoadedItems(CargoVehicle vehicle, string message)
         {
-            Console.WriteLine($"Items loaded in the train {message}:");
-            foreach (var item in train.ItemsToLoad)
+            Console.WriteLine($"Items loaded in the {vehicle.GetType().Name} {message}:");
+            foreach (var item in vehicle.ItemsToLoad)
             {
                 Console.WriteLine($"- Item: {item.GetType().Name}, Volume: {item.GetVolume()} m³, Weight: {item.GetWeight()} kg");
             }
