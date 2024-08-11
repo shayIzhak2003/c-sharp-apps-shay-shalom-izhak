@@ -20,6 +20,9 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
             ElectricItem testItem1 = new ElectricItem(10, 22, 4, 2, false, 110, "TestBrand1", "TestModel1");
             ElectricItem testItem2 = new ElectricItem(10, 22, 4, 2, false, 110, "TestBrand2", "TestModel2");
             ElectricItem testItem3 = new ElectricItem(30, 60, 15, 8, true, 220, "NewBrand", "NewModel");
+            ElectricItem testItem4 = new ElectricItem(50, 80, 20, 10, true, 240, "BrandX", "ModelX");
+            ElectricItem testItem5 = new ElectricItem(60, 100, 25, 12, true, 260, "BrandY", "ModelY");
+            ElectricItem testItem6 = new ElectricItem(70, 120, 30, 14, true, 280, "BrandZ", "ModelZ"); // This will exceed the maxItems limit on the Ship
 
             // Initial loading at the first port
             Console.WriteLine("At Port 1:");
@@ -41,6 +44,23 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
             bool shipLoadResult2 = testShip.Load(testItem2);
             Console.WriteLine($"Ship Load result 2: {shipLoadResult2}"); // Expected: True
             DisplayLoadedItems(testShip, "after loading the second item onto the Ship at Port 1");
+
+            // Attempt to load more items to reach the maximum items limit on the ship
+            Console.WriteLine("Attempting to load additional items onto the Ship:");
+
+            bool shipLoadResult3 = testShip.Load(testItem3);
+            DisplayLoadResult(shipLoadResult3, "Ship", "Item 3");
+
+            bool shipLoadResult4 = testShip.Load(testItem4);
+            DisplayLoadResult(shipLoadResult4, "Ship", "Item 4");
+
+            bool shipLoadResult5 = testShip.Load(testItem5);
+            DisplayLoadResult(shipLoadResult5, "Ship", "Item 5");
+
+            // This should fail as it exceeds the maxItems limit
+
+            bool shipLoadResult6 = testShip.Load(testItem6);
+            DisplayLoadResult(shipLoadResult6, "Ship", "Item 6");
 
             // Travel to Port 2
             testTrain.DistanceToNextPort = 1500;
@@ -71,9 +91,6 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
             testShip.Load(testItem1); // Load the first item back onto the ship
             DisplayLoadedItems(testShip, "after loading the first item back onto the Ship at Port 2");
 
-            testShip.Load(testItem3); // Load a new item onto the ship
-            DisplayLoadedItems(testShip, "after loading a new item onto the Ship at Port 2");
-
             // Travel to Port 3
             testTrain.DistanceToNextPort = 2500;
             Console.WriteLine("Train traveling to Port 3...");
@@ -97,9 +114,6 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
             testShip.UnLoad(testItem2); // Unload the second item from the ship
             DisplayLoadedItems(testShip, "after unloading the second item from the Ship at Port 3");
 
-            testShip.UnLoad(testItem3); // Unload the new item from the ship
-            DisplayLoadedItems(testShip, "after unloading the new item from the Ship at Port 3");
-
             // End of the journey, display final cargo status for both train and ship
             Console.WriteLine("Final cargo status:");
             DisplayLoadedItems(testTrain, "on the Train at the end of the journey");
@@ -114,6 +128,20 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
             foreach (var item in vehicle.ItemsToLoad)
             {
                 Console.WriteLine($"- Item: {item.GetType().Name}, Volume: {item.GetVolume()} m³, Weight: {item.GetWeight()} kg");
+            }
+        }
+
+        private static void DisplayLoadResult(bool result, string vehicleName, string itemName)
+        {
+            if (result)
+            {
+                Console.WriteLine($"{vehicleName} successfully loaded {itemName}.");
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"{vehicleName} failed to load {itemName}. Maximum capacity reached!");
+                Console.ResetColor();
             }
         }
     }
