@@ -8,9 +8,16 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
 {
     public class Train : CargoVehicle
     {
+        private Cron cargoLimiter;
+
+        public Train(decimal maxVolume, decimal maxWeight)
+        {
+            cargoLimiter = new Cron(maxVolume, maxWeight);
+        }
+
         public override bool Load(IPortable item)
         {
-            if (IsHaveRoom() && !IsOverload())
+            if (cargoLimiter.AddItem(item))
             {
                 ItemsToLoad.Add(item);
                 item.PackageItem();
@@ -35,7 +42,11 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
         {
             if (ItemsToLoad.Count > 0)
             {
-                ItemsToLoad.Clear();
+                foreach (var item in ItemsToLoad.ToList())
+                {
+                    cargoLimiter.RemoveItem(item);
+                    ItemsToLoad.Remove(item);
+                }
                 return true;
             }
             return false;
@@ -46,6 +57,7 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
             if (ItemsToLoad.Contains(item))
             {
                 ItemsToLoad.Remove(item);
+                cargoLimiter.RemoveItem(item);
                 item.UnPackage();
                 return true;
             }
@@ -66,32 +78,32 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
 
         public override bool IsHaveRoom()
         {
-            return GetCurrentVolume() < GetMaxVolume() && GetCurrentWeight() < GetMaxWeight();
+            return !cargoLimiter.IsOverloaded();
         }
 
         public override bool IsOverload()
         {
-            return GetCurrentVolume() > GetMaxVolume() || GetCurrentWeight() > GetMaxWeight();
+            return cargoLimiter.IsOverloaded();
         }
 
         public override decimal GetMaxVolume()
         {
-            return MaxVolume;
+            return cargoLimiter.MaxVolume;
         }
 
         public override decimal GetMaxWeight()
         {
-            return MaxWeight;
+            return cargoLimiter.MaxWeight;
         }
 
         public override decimal GetCurrentVolume()
         {
-            return ItemsToLoad.Sum(item => item.GetVolume());
+            return cargoLimiter.GetCurrentVolume();
         }
 
         public override decimal GetCurrentWeight()
         {
-            return ItemsToLoad.Sum(item => item.GetWeight());
+            return cargoLimiter.GetCurrentWeight();
         }
 
         public override string GetPricingList()
@@ -111,4 +123,6 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
             return pricingList.ToString();
         }
     }
+
+
 }

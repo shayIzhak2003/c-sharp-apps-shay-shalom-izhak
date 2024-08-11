@@ -8,8 +8,8 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
 {
     public class Cron
     {
-        public decimal MaxVolume { get; private set; }
-        public decimal MaxWeight { get; private set; }
+        public decimal MaxVolume { get; set; }
+        public decimal MaxWeight { get; set; }
         private List<IPortable> storedItems;
 
         public Cron(decimal maxVolume, decimal maxWeight)
@@ -59,10 +59,10 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
             return $"Current Volume: {GetCurrentVolume()} m³, Current Weight: {GetCurrentWeight()} kg, Max Volume: {MaxVolume} m³, Max Weight: {MaxWeight} kg";
         }
 
-        // New method to get the current items
         public List<IPortable> GetCurrentItems()
         {
             return new List<IPortable>(storedItems);
         }
     }
+
 }

@@ -8,7 +8,7 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
 {
     public class Container
     {
-        public int MaxItems { get; private set; }
+        public int MaxItems { get;  set; }
         private List<IPortable> items;
 
         public Container(int maxItems)
