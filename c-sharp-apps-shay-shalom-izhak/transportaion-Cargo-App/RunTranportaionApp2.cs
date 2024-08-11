@@ -24,6 +24,9 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
             ElectricItem testItem5 = new ElectricItem(60, 100, 25, 12, true, 260, "BrandY", "ModelY");
             ElectricItem testItem6 = new ElectricItem(70, 120, 30, 14, true, 280, "BrandZ", "ModelZ"); // This will exceed the maxItems limit on the Ship
 
+            // Create a ShippingPriceCalculator instance
+            ShippingPriceCalculator priceCalculator = new ShippingPriceCalculator();
+
             // Initial loading at the first port
             Console.WriteLine("At Port 1:");
 
@@ -58,7 +61,6 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
             DisplayLoadResult(shipLoadResult5, "Ship", "Item 5");
 
             // This should fail as it exceeds the maxItems limit
-
             bool shipLoadResult6 = testShip.Load(testItem6);
             DisplayLoadResult(shipLoadResult6, "Ship", "Item 6");
 
@@ -70,6 +72,12 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
             testShip.DistanceToNextPort = 2000;
             Console.WriteLine("Ship traveling to Port 2...");
             testShip.TravelToNextPort();
+
+            // Calculate and display the price after traveling to Port 2
+            decimal trainPriceToPort2 = priceCalculator.CalculatePrice(testTrain.ItemsToLoad, testTrain.DistanceToNextPort);
+            decimal shipPriceToPort2 = priceCalculator.CalculatePrice(testShip.ItemsToLoad, testShip.DistanceToNextPort);
+            Console.WriteLine($"Price for Train journey to Port 2: {trainPriceToPort2:C}");
+            Console.WriteLine($"Price for Ship journey to Port 2: {shipPriceToPort2:C}");
 
             // Operations at Port 2
             Console.WriteLine("At Port 2:");
@@ -100,6 +108,12 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
             Console.WriteLine("Ship traveling to Port 3...");
             testShip.TravelToNextPort();
 
+            // Calculate and display the price after traveling to Port 3
+            decimal trainPriceToPort3 = priceCalculator.CalculatePrice(testTrain.ItemsToLoad, testTrain.DistanceToNextPort);
+            decimal shipPriceToPort3 = priceCalculator.CalculatePrice(testShip.ItemsToLoad, testShip.DistanceToNextPort);
+            Console.WriteLine($"Price for Train journey to Port 3: {trainPriceToPort3:C}");
+            Console.WriteLine($"Price for Ship journey to Port 3: {shipPriceToPort3:C}");
+
             // Operations at Port 3
             Console.WriteLine("At Port 3:");
 
@@ -118,6 +132,12 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
             Console.WriteLine("Final cargo status:");
             DisplayLoadedItems(testTrain, "on the Train at the end of the journey");
             DisplayLoadedItems(testShip, "on the Ship at the end of the journey");
+
+            // Calculate and display the total price for the entire journey
+            decimal totalTrainPrice = trainPriceToPort2 + trainPriceToPort3;
+            decimal totalShipPrice = shipPriceToPort2 + shipPriceToPort3;
+            Console.WriteLine($"Total price for Train journey: {totalTrainPrice:C}");
+            Console.WriteLine($"Total price for Ship journey: {totalShipPrice:C}");
 
             Console.WriteLine("TestFunction executed successfully.");
         }
@@ -145,6 +165,5 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
             }
         }
     }
-
 
 }
