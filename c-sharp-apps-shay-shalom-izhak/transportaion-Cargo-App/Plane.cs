@@ -8,9 +8,18 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
 {
     public class Plane : CargoVehicle
     {
+        private Container _container;
+
+        public Plane(int maxItems, decimal maxVolume, decimal maxWeight)
+        {
+            _container = new Container(maxItems);
+            MaxVolume = maxVolume;
+            MaxWeight = maxWeight;
+        }
+
         public override bool Load(IPortable item)
         {
-            if (IsHaveRoom() && !IsOverload())
+            if (IsHaveRoom() && !IsOverload() && _container.AddItem(item))
             {
                 ItemsToLoad.Add(item);
                 item.PackageItem();
@@ -35,6 +44,11 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
         {
             if (ItemsToLoad.Count > 0)
             {
+                foreach (var item in ItemsToLoad)
+                {
+                    _container.RemoveItem(item);
+                    item.UnPackage();
+                }
                 ItemsToLoad.Clear();
                 return true;
             }
@@ -43,7 +57,7 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
 
         public override bool UnLoad(IPortable item)
         {
-            if (ItemsToLoad.Contains(item))
+            if (ItemsToLoad.Contains(item) && _container.RemoveItem(item))
             {
                 ItemsToLoad.Remove(item);
                 item.UnPackage();
@@ -66,12 +80,15 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
 
         public override bool IsHaveRoom()
         {
-            return GetCurrentVolume() < GetMaxVolume() && GetCurrentWeight() < GetMaxWeight();
+            return GetCurrentVolume() < GetMaxVolume() &&
+                   GetCurrentWeight() < GetMaxWeight() &&
+                   _container.GetCurrentItemCount() < _container.MaxItems;
         }
 
         public override bool IsOverload()
         {
-            return GetCurrentVolume() > GetMaxVolume() || GetCurrentWeight() > GetMaxWeight();
+            return GetCurrentVolume() > GetMaxVolume() ||
+                   GetCurrentWeight() > GetMaxWeight();
         }
 
         public override decimal GetMaxVolume()
