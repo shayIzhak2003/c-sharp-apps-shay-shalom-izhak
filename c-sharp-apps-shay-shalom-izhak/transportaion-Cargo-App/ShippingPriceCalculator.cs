@@ -55,7 +55,7 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
                 case CargoType.Plane:
                     return PlaneRate;
                 default:
-                    throw new ArgumentException("Unknown cargo type");
+                    throw new ArgumentException($"Unknown cargo type: {item.CargoType}");
             }
         }
     }
