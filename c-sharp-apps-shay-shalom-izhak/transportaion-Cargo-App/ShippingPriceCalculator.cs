@@ -7,32 +7,34 @@ using System.Threading.Tasks;
 namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
 {
     public class ShippingPriceCalculator : IShippingPriceCalculator
-{
-    private const decimal TrainRate = 5m;
-    private const decimal ShipRate = 20m;
-    private const decimal PlaneRate = 50m;
-
-    public decimal CalculatePrice(IPortable item, int travelDistance)
     {
-        int units = (int)(item.GetVolume() / 100) + (int)item.GetWeight();
-        if (item.IsFragile())
+        private const decimal CarRate = 2m;
+        private const decimal TrainRate = 5m;
+        private const decimal ShipRate = 20m;
+        private const decimal PlaneRate = 50m;
+
+
+        public decimal CalculatePrice(IPortable item, int travelDistance)
         {
-            units *= 2;
+            int units = (int)(item.GetVolume() / 100) + (int)item.GetWeight();
+            if (item.IsFragile())
+            {
+                units *= 2;
+            }
+
+            decimal rate = GetRate(item);
+            return units * travelDistance * rate;
         }
 
-        decimal rate = GetRate(item);
-        return units * travelDistance * rate;
-    }
-
-    public decimal CalculatePrice(List<IPortable> items, int travelDistance)
-    {
-        decimal totalPrice = 0;
-        foreach (var item in items)
+        public decimal CalculatePrice(List<IPortable> items, int travelDistance)
         {
-            totalPrice += CalculatePrice(item, travelDistance);
+            decimal totalPrice = 0;
+            foreach (var item in items)
+            {
+                totalPrice += CalculatePrice(item, travelDistance);
+            }
+            return totalPrice;
         }
-        return totalPrice;
-    }
 
 
         private decimal GetRate(IPortable item)
@@ -54,6 +56,8 @@ namespace c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App
                     return ShipRate;
                 case CargoType.Plane:
                     return PlaneRate;
+                case CargoType.Car:
+                    return CarRate;
                 default:
                     throw new ArgumentException($"Unknown cargo type: {item.CargoType}");
             }
