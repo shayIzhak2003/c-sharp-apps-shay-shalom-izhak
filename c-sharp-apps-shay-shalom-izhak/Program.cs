@@ -13,6 +13,7 @@ namespace c_sharp_apps_shay_shalom_izhak
        public static void Main(string[] args)
        {
             ProcessManager.MainProcess();
+
        }
      }
 }

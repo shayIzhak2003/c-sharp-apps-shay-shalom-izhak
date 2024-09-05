@@ -1,6 +1,7 @@
 ﻿using c_sharp_apps_shay_shalom_izhak.bank_app;
 using c_sharp_apps_shay_shalom_izhak.draft_app;
 using c_sharp_apps_shay_shalom_izhak.sport_app;
+using c_sharp_apps_shay_shalom_izhak.transportaion_Cargo_App;
 using c_sharp_apps_shay_shalom_izhak.transportation_app;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace c_sharp_apps_shay_shalom_izhak.common
         {
             while(true)
             {
-                Console.WriteLine("choose your app \n 1.BankApp  \n 2.SportApp  \n 3.DraftApp \n 4.TransportationApp \n 0.Exit");
+                Console.WriteLine("choose your app \n 1.BankApp  \n 2.SportApp  \n 3.DraftApp \n 4.TransportationApp. \n 5.TransportationCargo App  \n 0.Exit");
                 Console.WriteLine("======================");
                 Console.Write("enter your dection :");
                 int choose = int.Parse(Console.ReadLine());
@@ -37,6 +38,11 @@ namespace c_sharp_apps_shay_shalom_izhak.common
 
                     case 4:
                         TransportationAppMain.MainEntry();
+                        break;
+
+                    case 5:
+                        RunTranportaionApp2.TestFunction();
+                        //RunTranportaionApp2.DemoMain();
                         break;
 
                     case 0:
